@@ -1,7 +1,20 @@
 def carica_da_file(file_path):
     """Carica le foto dal file, creando un nuovo anno ogni volta che compare per la prima volta"""
     # TODO
-    #frapuntopernaggg
+    dizionario = {}
+    with open(file_path, "r") as file:
+        next(file)
+        for riga in file:
+            lista_foto=riga.strip().split(',')
+
+            if lista_foto[0] not in dizionario:
+                #dizionario[anno] = [riga[0]]
+                pass
+            else:
+                dizionario[riga[4]].append(riga[0])
+
+        print(dizionario)
+    return dizionario
 
 def aggiungi_foto(album, codice, titolo, autore, mese, anno, file_path):
     """Aggiunge una foto all'album, creando l'anno al volo se non è ancora presente"""
