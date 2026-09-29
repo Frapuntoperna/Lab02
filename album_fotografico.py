@@ -7,11 +7,11 @@ def carica_da_file(file_path):
         for riga in file:
             lista_foto=riga.strip().split(',')
 
-            if lista_foto[0] not in dizionario:
-                #dizionario[anno] = [riga[0]]
+            if lista_foto[4] not in dizionario:
+                dizionario[lista_foto[4]] = lista_foto
                 pass
             else:
-                dizionario[riga[4]].append(riga[0])
+                dizionario[riga[4]].append(lista_foto)
 
         print(dizionario)
     return dizionario
@@ -19,7 +19,23 @@ def carica_da_file(file_path):
 def aggiungi_foto(album, codice, titolo, autore, mese, anno, file_path):
     """Aggiunge una foto all'album, creando l'anno al volo se non è ancora presente"""
     # TODO
+    lista_foto=[]
+    codice=input(str('inserire il codice della foto: '))
+    titolo = input(str('inserire il titolo della foto: '))
+    autore = input(str('inserire il autore della foto: '))
+    mese = input(int('inserire il mese della foto: '))
+    anno = input(int('inserire il anno della foto: '))
+    lista_foto.append(codice)
+    lista_foto.append(titolo)
+    lista_foto.append(autore)
+    lista_foto.append(mese)
+    lista_foto.append(anno)
 
+
+    if anno in album:
+        album[anno]=lista_foto
+
+    return album
 
 def cerca_foto(album, codice):
     """Cerca una foto nell'album dato il codice"""
